@@ -1,0 +1,14 @@
+{% extends 'AppBlog/index.html' %}
+{% load static %}
+<title>
+    {% block title %}Lista de Autores{% endblock %}
+</title>
+
+{% block cuerpo %}
+    <h1>Lista de Autores</h1>
+    <ul>
+        {% for autor in autores %}
+            <li>{{ autor.nombre }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

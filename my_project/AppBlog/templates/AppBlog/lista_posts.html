@@ -1,0 +1,16 @@
+{% extends 'AppBlog/index.html' %}
+{% load static %}
+<title>
+    {% block title %}Posts{% endblock %}
+</title>
+{% block cuerpo %}
+    <h1>Todos los posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.titulo }} - {{post.autor}}</h2>
+                <p>{{ post.contenido }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

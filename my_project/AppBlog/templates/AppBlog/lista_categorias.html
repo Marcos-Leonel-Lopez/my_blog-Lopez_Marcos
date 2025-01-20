@@ -1,0 +1,16 @@
+{% extends 'AppBlog/index.html' %}
+{% load static %}
+<title>
+    {% block title %}Lista de Categorias{% endblock %}
+</title>
+{% block cuerpo %}
+    <h1>Categorias</h1>
+    <ul>
+        {% for categoria in categorias %}
+            <li>
+                <h2>{{ categoria.nombre }}</h2>
+                <p>{{ categoria.descripcion }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
