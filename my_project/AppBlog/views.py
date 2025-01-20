@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .forms import AutorForm, CategoriaForm, PostForm, SearchForm
 from .models import Autor, Categoria, Post
 
+#para la busqueda
+from django.db.models import Q
+
 # Create your views here.
 
 def index(request):
@@ -46,14 +49,14 @@ def lista_categorias(request):
     categorias = Categoria.objects.all()
     return render(request, 'AppBlog/lista_categorias.html', {'categorias': categorias})
 
-
 def search(request):
-    if request.method == 'POST':
-        search_form = SearchForm(request.POST)
-        if search_form.is_valid():
-            query = search_form.cleaned_data['query']
-            posts = Post.objects.filter(titulo__icontains=query)
-            return render(request, 'AppBlog/search.html', {'posts': posts, 'query': query})
-    else:
-        search_form = SearchForm()
-    return render(request, 'AppBlog/search.html', {'search_form': search_form})
+    query = request.GET.get('q', '')
+    result = []
+
+    if query:
+        result = Post.objects.filter(
+            Q(titulo__icontains=query) |
+            Q(contenido__icontains=query)
+        )
+    
+    return render(request, 'AppBlog/search.html', {'result': result, 'query': query})

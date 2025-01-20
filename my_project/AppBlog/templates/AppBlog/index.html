@@ -50,6 +50,10 @@
               >
             </li>
           </ul>
+          <form class="d-flex" method="get" action="{% url 'search' %}">
+            <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Buscar</button>
+        </form>
         </div>
       </div>
     </nav>

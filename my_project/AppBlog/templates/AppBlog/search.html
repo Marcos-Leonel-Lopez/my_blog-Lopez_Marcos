@@ -1,0 +1,25 @@
+{% extends 'AppBlog/index.html' %}
+
+{% block title %}Resultados de Búsqueda{% endblock %}
+
+{% block cuerpo %}
+<div class="container mt-5">
+    <h1>Resultados de búsqueda</h1>
+    <p>Mostrando resultados para: <strong>{{ query }}</strong></p>
+    
+    {% if result %}
+        <ul class="list-group">
+            {% for post in result %}
+                <li class="list-group-item">
+                    <h5>{{ post.titulo }}</h5>
+                    <p>{{ post.contenido|truncatechars:100 }}</p>
+                    <!-- Para ir al post en especifico cuando se haga esa ruta
+                    <a href="#" class="btn btn-primary btn-sm">Leer más</a> -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados para tu búsqueda.</p>
+    {% endif %}
+</div>
+{% endblock %}
